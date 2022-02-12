@@ -154,7 +154,7 @@ class KNN(BaseDetector):
         self.metric_params = metric_params
         self.n_jobs = n_jobs
 
-        if self.algorithm != 'auto' and self.algorithm != 'ball_tree':
+        if self.algorithm not in ('auto', 'ball_tree'):
             warn('algorithm parameter is deprecated and will be removed '
                  'in version 0.7.6. By default, ball_tree will be used.',
                  FutureWarning)

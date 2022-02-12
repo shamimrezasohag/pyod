@@ -198,13 +198,13 @@ class SOS(BaseDetector):
                 # If not, increase or decrease precision
                 elif Hdiff > 0:
                     betamin = beta[i].copy()
-                    if betamax == np.inf or betamax == -np.inf:
+                    if betamax in (np.inf, -np.inf):
                         beta[i] = beta[i] * 2.0
                     else:
                         beta[i] = (beta[i] + betamax) / 2.0
                 else:
                     betamax = beta[i].copy()
-                    if betamin == np.inf or betamin == -np.inf:
+                    if betamin in (np.inf, -np.inf):
                         beta[i] = beta[i] / 2.0
                     else:
                         beta[i] = (beta[i] + betamin) / 2.0
