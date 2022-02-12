@@ -181,7 +181,8 @@ def data_visualize(X_train, y_train, show_figure=True,
         plt.yticks([])
         plt.legend(loc='best', prop={'size': 10})
 
-    assert len(X_train) <= 5
+    if len(X_train) > 5:
+        raise AssertionError
     in_colors = ['blue', 'green', 'purple', 'brown', 'black']
     out_colors = ['red', 'orange', 'grey', 'violet', 'pink']
     plt.figure(figsize=(13, 10))

@@ -46,10 +46,12 @@ class TestData(unittest.TestCase):
         assert_equal(y_train.shape[0], X_train.shape[0])
         assert_equal(y_test.shape[0], X_test.shape[0])
 
-        assert (self.n_train - X_train.shape[0] <= 1)
+        if (self.n_train - X_train.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_train.shape[1], 2)
 
-        assert (self.n_test - X_test.shape[0] <= 1)
+        if (self.n_test - X_test.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_test.shape[1], 2)
 
         out_perc = np.sum(y_train) / self.n_train
@@ -98,10 +100,12 @@ class TestData(unittest.TestCase):
         assert_equal(y_train.shape[0], X_train.shape[0])
         assert_equal(y_test.shape[0], X_test.shape[0])
 
-        assert (self.n_train - X_train.shape[0] <= 1)
+        if (self.n_train - X_train.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_train.shape[1], 2)
 
-        assert (self.n_test - X_test.shape[0] <= 1)
+        if (self.n_test - X_test.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_test.shape[1], 2)
 
         out_perc = (np.sum(y_train) + np.sum(y_test)) / (
@@ -183,10 +187,12 @@ class TestData(unittest.TestCase):
         assert_equal(y_train.shape[0], X_train.shape[0])
         assert_equal(y_test.shape[0], X_test.shape[0])
 
-        assert (self.n_train - X_train.shape[0] <= 1)
+        if (self.n_train - X_train.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_train.shape[1], 2)
 
-        assert (self.n_test - X_test.shape[0] <= 1)
+        if (self.n_test - X_test.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_test.shape[1], 2)
 
         out_perc = (np.sum(y_train) + np.sum(y_test)) / (
@@ -204,10 +210,12 @@ class TestData(unittest.TestCase):
         assert_equal(y_train.shape[0], X_train.shape[0])
         assert_equal(y_test.shape[0], X_test.shape[0])
 
-        assert (self.n_train - X_train.shape[0] <= 1)
+        if (self.n_train - X_train.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_train.shape[1], 2)
 
-        assert (self.n_test - X_test.shape[0] <= 1)
+        if (self.n_test - X_test.shape[0] > 1):
+            raise AssertionError
         assert_equal(X_test.shape[1], 2)
 
         out_perc = (np.sum(y_train) + np.sum(y_test)) / (
@@ -240,11 +248,16 @@ class TestData(unittest.TestCase):
                                       contamination=self.contamination,
                                       random_state=self.random_state)
 
-        assert np.array_equal(X_train, X_train2)
-        assert np.array_equal(X_train, X_train2)
-        assert np.array_equal(X_test, X_test2)
-        assert np.array_equal(y_train, y_train2)
-        assert np.array_equal(y_test, y_test2)
+        if not np.array_equal(X_train, X_train2):
+            raise AssertionError
+        if not np.array_equal(X_train, X_train2):
+            raise AssertionError
+        if not np.array_equal(X_test, X_test2):
+            raise AssertionError
+        if not np.array_equal(y_train, y_train2):
+            raise AssertionError
+        if not np.array_equal(y_test, y_test2):
+            raise AssertionError
 
     def test_data_generate_categorical5(self):
         with assert_raises(ValueError):

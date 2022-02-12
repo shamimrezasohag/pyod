@@ -183,7 +183,8 @@ file_names = [
     'WPBC',  # too small
 ]
 
-assert (len(arff_list) == len(file_names))
+if (len(arff_list) != len(file_names)):
+    raise AssertionError
 
 for m in range(len(file_names)):
     arff_file = arff_list[m]
