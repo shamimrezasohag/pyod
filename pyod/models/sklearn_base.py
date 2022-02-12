@@ -77,7 +77,7 @@ def _pprint(params, offset=0, printer=repr):
     # Do a multi-line justified repr:
     options = np.get_printoptions()
     np.set_printoptions(precision=5, threshold=64, edgeitems=2)
-    params_list = list()
+    params_list = []
     this_line_length = offset
     line_sep = ',\n' + (1 + offset // 2) * ' '
     for i, (k, v) in enumerate(sorted(six.iteritems(params))):
