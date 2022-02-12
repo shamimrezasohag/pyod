@@ -122,7 +122,8 @@ class TestCOF(unittest.TestCase):
             self.clf.fit_predict_score(self.X_test, self.y_test,
                                        scoring='something')
 
-    def test_check_parameters(self):
+    @staticmethod
+    def test_check_parameters():
         with assert_raises(ValueError):
             LMDD(contamination=10.)
         with assert_raises(ValueError):

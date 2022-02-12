@@ -134,7 +134,8 @@ class TestMAD(unittest.TestCase):
         assert_array_less(pred_ranks, 1.01)
         assert_array_less(-0.1, pred_ranks)
 
-    def test_check_univariate(self):
+    @staticmethod
+    def test_check_univariate():
         with assert_raises(ValueError):
             MAD().fit(X=[[0.0, 0.0],
                          [0.0, 0.0]])

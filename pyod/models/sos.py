@@ -218,7 +218,8 @@ class SOS(BaseDetector):
 
         return A
 
-    def _a2b(self, A):
+    @staticmethod
+    def _a2b(A):
         """Computes the binding probabilities of a given affinity
         matrix.
         
@@ -236,7 +237,8 @@ class SOS(BaseDetector):
         B = A / A.sum(axis=1)[:, np.newaxis]
         return B
 
-    def _b2o(self, B):
+    @staticmethod
+    def _b2o(B):
         """Computes the binding probabilities of a given affinity
         matrix.
         

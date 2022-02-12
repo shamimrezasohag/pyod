@@ -137,10 +137,12 @@ class TestROD(unittest.TestCase):
                                   self.angles_scalers1, self.angles_scalers2)[
                                0])
 
-    def test_angle(self):
+    @staticmethod
+    def test_angle():
         assert_equal(0.0, angle(v1=[0, 0, 1], v2=[0, 0, 1]))
 
-    def test_sigmoid(self):
+    @staticmethod
+    def test_sigmoid():
         assert_equal(0.5, sigmoid(np.array([0.0])))
 
     def test_process_sub(self):
@@ -156,7 +158,8 @@ class TestROD(unittest.TestCase):
                      rod_nD(self.X_train, True, self.gm, self.data_scaler,
                             self.angles_scalers1, self.angles_scalers2)[0])
 
-    def test_mad(self):
+    @staticmethod
+    def test_mad():
         gm, _ = mad(np.array([1, 2, 3]))
         assert_equal([0.6745, 0.0, 0.6745], gm)
 
