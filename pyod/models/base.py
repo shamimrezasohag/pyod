@@ -498,7 +498,7 @@ class BaseDetector(object):
             try:
                 with warnings.catch_warnings(record=True) as w:
                     value = getattr(self, key, None)
-                if len(w) and w[0].category == DeprecationWarning:
+                if w and w[0].category == DeprecationWarning:
                     # if the parameter is deprecated, don't show it
                     continue
             finally:
