@@ -64,8 +64,10 @@ class TestStatModels(unittest.TestCase):
         pear_mat = pearsonr_mat(self.mat, self.w_mat)
         assert_equal(pear_mat.shape, (10, 10))
 
-        assert (np.min(pear_mat) >= -1)
-        assert (np.max(pear_mat) <= 1)
+        if (np.min(pear_mat) < -1):
+            raise AssertionError
+        if (np.max(pear_mat) > 1):
+            raise AssertionError
 
     def tearDown(self):
         pass

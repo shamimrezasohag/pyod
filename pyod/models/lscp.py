@@ -347,7 +347,8 @@ class LSCP(BaseDetector):
             decrease_value = 0
             while len(tmp) < 2:
                 decrease_value = decrease_value + 1
-                assert decrease_value < self.local_region_threshold
+                if decrease_value >= self.local_region_threshold:
+                    raise AssertionError
                 tmp = [item for item, count in
                        collections.Counter(local_region_list[j]).items() if
                        count > (self.local_region_threshold - decrease_value)]

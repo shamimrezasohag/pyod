@@ -226,7 +226,8 @@ class SUOD(BaseDetector):
         else:
             decision_score = maximization(decision_score_mat)
 
-        assert (len(decision_score) == n_samples)
+        if (len(decision_score) != n_samples):
+            raise AssertionError
 
         self.decision_scores_ = decision_score.ravel()
         self._process_decision_scores()
@@ -268,6 +269,7 @@ class SUOD(BaseDetector):
         else:
             decision_score = maximization(predicted_scores)
 
-        assert (len(decision_score) == X.shape[0])
+        if (len(decision_score) != X.shape[0]):
+            raise AssertionError
 
         return decision_score.ravel()

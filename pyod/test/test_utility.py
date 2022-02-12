@@ -231,16 +231,20 @@ class TestMetrics(unittest.TestCase):
         li3 = [8]
 
         ind = get_list_diff(li1, li2)
-        assert (ind == [1])
+        if (ind != [1]):
+            raise AssertionError
 
         ind = get_list_diff(np.asarray(li2), np.asarray(li1))
-        assert (ind == [5])
+        if (ind != [5]):
+            raise AssertionError
 
         ind = get_list_diff(li1, li1)
-        assert (ind == [])
+        if (ind != []):
+            raise AssertionError
 
         ind = get_list_diff(li1, li3)
-        assert (ind == [1, 2, 3, 4])
+        if (ind != [1, 2, 3, 4]):
+            raise AssertionError
 
     @staticmethod
     def test_get_diff_elements():
@@ -249,16 +253,20 @@ class TestMetrics(unittest.TestCase):
         li3 = [8]
 
         ind = get_diff_elements(li1, li2)
-        assert (ind == [1, 5])
+        if (ind != [1, 5]):
+            raise AssertionError
 
         ind = get_diff_elements(np.asarray(li2), np.asarray(li1))
-        assert (ind == [5, 1])
+        if (ind != [5, 1]):
+            raise AssertionError
 
         ind = get_diff_elements(li1, li1)
-        assert (ind == [])
+        if (ind != []):
+            raise AssertionError
 
         ind = get_diff_elements(li1, li3)
-        assert (ind == [1, 2, 3, 4, 8])
+        if (ind != [1, 2, 3, 4, 8]):
+            raise AssertionError
 
     @staticmethod
     def test_get_intersection():
@@ -267,16 +275,20 @@ class TestMetrics(unittest.TestCase):
         li3 = [8]
 
         ind = get_intersection(li1, li2)
-        assert (ind == [2, 3, 4])
+        if (ind != [2, 3, 4]):
+            raise AssertionError
 
         ind = get_intersection(np.asarray(li2), np.asarray(li1))
-        assert (ind == [2, 3, 4])
+        if (ind != [2, 3, 4]):
+            raise AssertionError
 
         ind = get_intersection(li1, li1)
-        assert (ind == [1, 2, 3, 4])
+        if (ind != [1, 2, 3, 4]):
+            raise AssertionError
 
         ind = get_intersection(li1, li3)
-        assert (ind == [])
+        if (ind != []):
+            raise AssertionError
 
     def tearDown(self):
         pass

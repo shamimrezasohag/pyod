@@ -40,20 +40,27 @@ class TestHBOS(unittest.TestCase):
         self.clf.fit(self.X_train)
 
     def test_parameters(self):
-        assert (hasattr(self.clf, 'decision_scores_') and
-                self.clf.decision_scores_ is not None)
-        assert (hasattr(self.clf, 'labels_') and
-                self.clf.labels_ is not None)
-        assert (hasattr(self.clf, 'threshold_') and
-                self.clf.threshold_ is not None)
-        assert (hasattr(self.clf, '_mu') and
-                self.clf._mu is not None)
-        assert (hasattr(self.clf, '_sigma') and
-                self.clf._sigma is not None)
-        assert (hasattr(self.clf, 'hist_') and
-                self.clf.hist_ is not None)
-        assert (hasattr(self.clf, 'bin_edges_') and
-                self.clf.bin_edges_ is not None)
+        if not (hasattr(self.clf, 'decision_scores_') and
+                self.clf.decision_scores_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'labels_') and
+                self.clf.labels_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'threshold_') and
+                self.clf.threshold_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, '_mu') and
+                self.clf._mu is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, '_sigma') and
+                self.clf._sigma is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'hist_') and
+                self.clf.hist_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'bin_edges_') and
+                self.clf.bin_edges_ is not None):
+            raise AssertionError
 
     def test_train_scores(self):
         assert_equal(len(self.clf.decision_scores_), self.X_train.shape[0])
@@ -65,7 +72,8 @@ class TestHBOS(unittest.TestCase):
         assert_equal(pred_scores.shape[0], self.X_test.shape[0])
 
         # check performance
-        assert (roc_auc_score(self.y_test, pred_scores) >= self.roc_floor)
+        if (roc_auc_score(self.y_test, pred_scores) < self.roc_floor):
+            raise AssertionError
 
     def test_prediction_labels(self):
         pred_labels = self.clf.predict(self.X_test)
@@ -73,18 +81,24 @@ class TestHBOS(unittest.TestCase):
 
     def test_prediction_proba(self):
         pred_proba = self.clf.predict_proba(self.X_test)
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_linear(self):
         pred_proba = self.clf.predict_proba(self.X_test, method='linear')
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_unify(self):
         pred_proba = self.clf.predict_proba(self.X_test, method='unify')
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_parameter(self):
         with assert_raises(ValueError):
@@ -150,20 +164,27 @@ class TestAutoHBOS(unittest.TestCase):
         self.clf.fit(self.X_train)
 
     def test_parameters(self):
-        assert (hasattr(self.clf, 'decision_scores_') and
-                self.clf.decision_scores_ is not None)
-        assert (hasattr(self.clf, 'labels_') and
-                self.clf.labels_ is not None)
-        assert (hasattr(self.clf, 'threshold_') and
-                self.clf.threshold_ is not None)
-        assert (hasattr(self.clf, '_mu') and
-                self.clf._mu is not None)
-        assert (hasattr(self.clf, '_sigma') and
-                self.clf._sigma is not None)
-        assert (hasattr(self.clf, 'hist_') and
-                self.clf.hist_ is not None)
-        assert (hasattr(self.clf, 'bin_edges_') and
-                self.clf.bin_edges_ is not None)
+        if not (hasattr(self.clf, 'decision_scores_') and
+                self.clf.decision_scores_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'labels_') and
+                self.clf.labels_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'threshold_') and
+                self.clf.threshold_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, '_mu') and
+                self.clf._mu is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, '_sigma') and
+                self.clf._sigma is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'hist_') and
+                self.clf.hist_ is not None):
+            raise AssertionError
+        if not (hasattr(self.clf, 'bin_edges_') and
+                self.clf.bin_edges_ is not None):
+            raise AssertionError
 
     def test_train_scores(self):
         assert_equal(len(self.clf.decision_scores_), self.X_train.shape[0])
@@ -175,7 +196,8 @@ class TestAutoHBOS(unittest.TestCase):
         assert_equal(pred_scores.shape[0], self.X_test.shape[0])
 
         # check performance
-        assert (roc_auc_score(self.y_test, pred_scores) >= self.roc_floor)
+        if (roc_auc_score(self.y_test, pred_scores) < self.roc_floor):
+            raise AssertionError
 
     def test_prediction_labels(self):
         pred_labels = self.clf.predict(self.X_test)
@@ -183,18 +205,24 @@ class TestAutoHBOS(unittest.TestCase):
 
     def test_prediction_proba(self):
         pred_proba = self.clf.predict_proba(self.X_test)
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_linear(self):
         pred_proba = self.clf.predict_proba(self.X_test, method='linear')
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_unify(self):
         pred_proba = self.clf.predict_proba(self.X_test, method='unify')
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_parameter(self):
         with assert_raises(ValueError):
@@ -205,19 +233,25 @@ class TestAutoHBOS(unittest.TestCase):
                                                    return_confidence=True)
         assert_equal(pred_labels.shape, self.y_test.shape)
         assert_equal(confidence.shape, self.y_test.shape)
-        assert (confidence.min() >= 0)
-        assert (confidence.max() <= 1)
+        if (confidence.min() < 0):
+            raise AssertionError
+        if (confidence.max() > 1):
+            raise AssertionError
 
     def test_prediction_proba_linear_confidence(self):
         pred_proba, confidence = self.clf.predict_proba(self.X_test,
                                                         method='linear',
                                                         return_confidence=True)
-        assert (pred_proba.min() >= 0)
-        assert (pred_proba.max() <= 1)
+        if (pred_proba.min() < 0):
+            raise AssertionError
+        if (pred_proba.max() > 1):
+            raise AssertionError
 
         assert_equal(confidence.shape, self.y_test.shape)
-        assert (confidence.min() >= 0)
-        assert (confidence.max() <= 1)
+        if (confidence.min() < 0):
+            raise AssertionError
+        if (confidence.max() > 1):
+            raise AssertionError
 
     def test_fit_predict(self):
         pred_labels = self.clf.fit_predict(self.X_train)

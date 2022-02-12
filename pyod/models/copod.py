@@ -272,8 +272,8 @@ class COPOD(BaseDetector):
 
         ticks = list(column_range)
         if feature_names is not None:
-            assert len(feature_names) == len(ticks), \
-                "Length of feature_names does not match dataset dimensions."
+            if len(feature_names) != len(ticks):
+                raise AssertionError("Length of feature_names does not match dataset dimensions.")
             plt.xticks(ticks, labels=feature_names)
         else:
             plt.xticks(ticks)

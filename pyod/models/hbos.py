@@ -118,8 +118,9 @@ class HBOS(BaseDetector):
                 self.hist_.append(hist)
                 self.bin_edges_.append(bin_edges)
                 # the sum of (width * height) should equal to 1
-                assert (np.isclose(1, np.sum(
-                    hist * np.diff(bin_edges)), atol=0.1))
+                if not (np.isclose(1, np.sum(
+                    hist * np.diff(bin_edges)), atol=0.1)):
+                    raise AssertionError
 
             outlier_scores = _calculate_outlier_scores_auto(X, self.bin_edges_,
                                                             self.hist_,
@@ -135,9 +136,10 @@ class HBOS(BaseDetector):
                 self.hist_[:, i], self.bin_edges_[:, i] = \
                     np.histogram(X[:, i], bins=self.n_bins, density=True)
                 # the sum of (width * height) should equal to 1
-                assert (np.isclose(1, np.sum(
+                if not (np.isclose(1, np.sum(
                     self.hist_[:, i] * np.diff(self.bin_edges_[:, i])),
-                                   atol=0.1))
+                                   atol=0.1)):
+                    raise AssertionError
 
             outlier_scores = _calculate_outlier_scores(X, self.bin_edges_,
                                                        self.hist_,

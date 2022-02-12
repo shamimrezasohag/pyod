@@ -203,11 +203,14 @@ class TestBASE(unittest.TestCase):
     def test_get_params():
         test = T(K(), K())
 
-        assert ('a__d' in test.get_params(deep=True))
-        assert ('a__d' not in test.get_params(deep=False))
+        if ('a__d' not in test.get_params(deep=True)):
+            raise AssertionError
+        if ('a__d' in test.get_params(deep=False)):
+            raise AssertionError
 
         test.set_params(a__d=2)
-        assert (test.a.d == 2)
+        if (test.a.d != 2):
+            raise AssertionError
         assert_raises(ValueError, test.set_params, a__a=2)
 
     def tearDown(self):
