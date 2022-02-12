@@ -20,8 +20,7 @@ def _get_tensorflow_version():  # pragma: no cover
     """
 
     tf_version = str(tensorflow.__version__)
-    if int(tf_version.split(".")[0]) != 1 and int(
-            tf_version.split(".")[0]) != 2:
+    if int(tf_version.split(".")[0]) not in (1, 2):
         raise ValueError("tensorflow version error")
 
     return int(tf_version.split(".")[0])
