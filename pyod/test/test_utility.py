@@ -38,7 +38,8 @@ class TestParameters(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_check_parameter_range(self):
+    @staticmethod
+    def test_check_parameter_range():
         # verify parameter type correction
         with assert_raises(TypeError):
             check_parameter('f', 0, 100)
@@ -199,7 +200,8 @@ class TestMetrics(unittest.TestCase):
         with assert_raises(ValueError):
             get_label_n(self.y, self.labels_short_)
 
-    def test_score_to_label(self):
+    @staticmethod
+    def test_score_to_label():
         manual_scores = [0.1, 0.4, 0.2, 0.3, 0.5, 0.9, 0.7, 1, 0.8, 0.6]
         labels = score_to_label(manual_scores, outliers_fraction=0.1)
         assert_allclose(labels, [0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
@@ -222,7 +224,8 @@ class TestMetrics(unittest.TestCase):
         with assert_raises(ValueError):
             argmaxn(self.value_lists, 20)
 
-    def test_get_list_diff(self):
+    @staticmethod
+    def test_get_list_diff():
         li1 = [1, 2, 3, 4]
         li2 = [2, 3, 4, 5]
         li3 = [8]
@@ -239,7 +242,8 @@ class TestMetrics(unittest.TestCase):
         ind = get_list_diff(li1, li3)
         assert (ind == [1, 2, 3, 4])
 
-    def test_get_diff_elements(self):
+    @staticmethod
+    def test_get_diff_elements():
         li1 = [1, 2, 3, 4]
         li2 = [2, 3, 4, 5]
         li3 = [8]
@@ -256,7 +260,8 @@ class TestMetrics(unittest.TestCase):
         ind = get_diff_elements(li1, li3)
         assert (ind == [1, 2, 3, 4, 8])
 
-    def test_get_intersection(self):
+    @staticmethod
+    def test_get_intersection():
         li1 = [1, 2, 3, 4]
         li2 = [2, 3, 4, 5]
         li3 = [8]

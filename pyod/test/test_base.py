@@ -179,7 +179,8 @@ class TestBASE(unittest.TestCase):
         # TODO: create uniform testcases
         pass
 
-    def test_repr(self):
+    @staticmethod
+    def test_repr():
         # Smoke test the repr of the base estimator.
         my_estimator = MyEstimator()
         repr(my_estimator)
@@ -192,12 +193,14 @@ class TestBASE(unittest.TestCase):
         some_est = T(a=["long_params"] * 1000)
         assert_equal(len(repr(some_est)), 415)
 
-    def test_str(self):
+    @staticmethod
+    def test_str():
         # Smoke test the str of the base estimator
         my_estimator = MyEstimator()
         str(my_estimator)
 
-    def test_get_params(self):
+    @staticmethod
+    def test_get_params():
         test = T(K(), K())
 
         assert ('a__d' in test.get_params(deep=True))

@@ -214,7 +214,8 @@ class VAE(BaseDetector):
         check_parameter(dropout_rate, 0, 1, param_name='dropout_rate',
                         include_left=True)
 
-    def sampling(self, args):
+    @staticmethod
+    def sampling(args):
         """Reparametrisation by sampling from Gaussian, N(0,I)
         To sample from epsilon = Norm(0,I) instead of from likelihood Q(z|X)
         with latent variables z: z = z_mean + sqrt(var) * epsilon

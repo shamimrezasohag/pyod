@@ -37,7 +37,8 @@ class TestSOD(unittest.TestCase):
         self.clf = SOD(contamination=self.contamination)
         self.clf.fit(self.X_train)
 
-    def test_check_parameters(self):
+    @staticmethod
+    def test_check_parameters():
         with assert_raises(ValueError):
             SOD(n_neighbors=None, ref_set=10, alpha=0.8)
         with assert_raises(ValueError):
